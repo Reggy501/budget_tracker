@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Your Expenses</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      h1,
+      h2 {
+        text-align: center;
+        margin-top: 20px;
+      }
+      footer {
+        background-color: #343a40;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+        margin-top: 20px;
+      }
+      .balance-card {
+        background-color: #e9ecef;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">Budget Tracker</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'income' %}">Income</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'expenses' %}">Expenses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-danger" href="{% url 'logout' %}"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-4">
+      <h1>Track Your Expenses</h1>
+
+      <!-- Balance Display -->
+
+      <!-- Display Messages -->
+      {% if messages %}
+      <div class="container">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- Add Expense Form -->
+      <div class="card mt-4">
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %} {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add Expense</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Expenses Table -->
+      <h2 class="mt-5">Your Expenses</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered mt-3">
+          <thead class="table-dark">
+            <tr>
+              <th>Date</th>
+              <th>Amount (Tshs)</th>
+              <th>Category</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if expenses %} {% for expense in expenses %}
+            <tr>
+              <td>{{ expense.date|date:"d M Y" }}</td>
+              <td>Tshs {{ expense.amount|floatformat:2 }}</td>
+              <td>{{ expense.category }}</td>
+              <td>{{ expense.description }}</td>
+            </tr>
+            {% endfor %} {% else %}
+            <tr>
+              <td colspan="4" class="text-center">
+                <span class="badge bg-warning text-dark"
+                  >No expenses recorded yet.</span
+                >
+              </td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 Personal Budget Tracker. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

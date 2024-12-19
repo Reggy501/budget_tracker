@@ -1,0 +1,118 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Budget Tracker</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .hero {
+        background-image: url("{% static 'image/img02.jpg.webp' %}"); /* Use static URL */
+        background-size: cover;
+        background-position: center;
+        color: black;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        padding: 60px 20px;
+        text-align: center;
+      }
+      footer {
+        background-color: #f8f9fa;
+        padding: 20px 0;
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+    {% load static %}
+    <!-- Load static files -->
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">Personal Budget Tracker</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1>Welcome to Personal Budget Tracker</h1>
+      <p class="lead">
+        Your ultimate tool for managing expenses, tracking income, and achieving
+        your savings goals.
+      </p>
+    </div>
+
+    <!-- About Section -->
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>How does it help?</h2>
+          <p>The Personal Budget Tracker helps you:</p>
+          <ul>
+            <li>Analyze your monthly and yearly expenses and income</li>
+            <li>Identify areas where you can save money</li>
+            <li>Set and track savings goals effectively</li>
+            <li>Gain full control over your financial health</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <img
+            src="{% static 'image/img03.jpg' %}"
+            alt="Budgeting illustration"
+            class="img-fluid"
+          />
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-12 text-center">
+          <h2>Why use this Personal Budget Tracker?</h2>
+          <p>
+            This tool is easy to use, provides detailed insights, and helps you
+            stay on top of your finances. Whether you're saving for a big
+            purchase, planning a vacation, or just trying to make ends meet, our
+            tracker is designed to support your financial goals.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p class="mb-0">
+          &copy; 2024 Personal Budget Tracker. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
